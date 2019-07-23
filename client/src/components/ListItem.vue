@@ -26,9 +26,11 @@ methods:{
 },
 
 mounted(){
-  fetch(`https://api.iextrading.com/1.0/stock/${this.stock.symbol}/batch?types=quote`)
+  // fetch(`https://api.iextrading.com/1.0/stock/${this.stock.symbol}/batch?types=quote`)
+  
+  fetch(`http://cloud.iexapis.com/v1/stock/${this.stock.symbol}/quote?token=pk_71e1d70b73824881a0189570aa99669d`)
   .then(res => res.json())
-  .then(data => this.quote = data.quote)
+  .then(data => this.quote = data)
 
 
   .then(() => {
