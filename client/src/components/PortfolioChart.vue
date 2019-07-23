@@ -33,7 +33,7 @@ export default {
   mounted(){
     const promises = this.portfolio.map((stock) => {
       // return fetch(`https://api.iextrading.com/1.0/stock/${stock.symbol}/batch?types=quote,chart`)
-      return fetch(`http://cloud.iexapis.com/v1/stock/${stock.symbol}/quote?token=pk_71e1d70b73824881a0189570aa99669d`)
+      return fetchJsonp(`https://cloud-sse.iexapis.com/stable/stock/${stock.symbol}/batch?types=quote,chart&range=1m&last=10&token=pk_71e1d70b73824881a0189570aa99669d`)
       .then(res => res.json())
     })
     Promise.all(promises)
