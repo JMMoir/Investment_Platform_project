@@ -32,7 +32,8 @@ export default {
 
   mounted(){
     const promises = this.portfolio.map((stock) => {
-      return fetch(`https://api.iextrading.com/1.0/stock/${stock.symbol}/batch?types=quote,chart`)
+      // return fetch(`https://api.iextrading.com/1.0/stock/${stock.symbol}/batch?types=quote,chart`)
+      return fetch(`http://cloud.iexapis.com/v1/stock/${stock.symbol}/quote?token=pk_71e1d70b73824881a0189570aa99669d`)
       .then(res => res.json())
     })
     Promise.all(promises)
@@ -61,13 +62,11 @@ export default {
     .then(() => {
       // I want an array with 20 elements, each element should be the sum of each days holding value for an indivual stock
       // [1000, 2000, 3000, 1000, 2000, 3000, 4000, 5000, 6000]
-
       this.portfolio.forEach((stock) => {
         this.all.forEach((share) => {
           if(stock.symbol === share.quote.symbol){
             share.chart.forEach( (day) => {
             this.closingValues.push([day.label, (day.close * stock.numberOfShares)])
-
             })
           }
         })
@@ -75,10 +74,11 @@ export default {
     })
 
     .then(() => {
+
       this.closingValues.forEach((pair) => {
         this.chartData[pair[0]] = this.chartData[pair[0]] ? this.chartData[pair[0]] + pair[1]: pair[1];
       })
-
+      console.log(this.chartData);
       this.chartValues = Object.values(this.chartData)
       this.chartLabels = Object.keys(this.chartData)
     })

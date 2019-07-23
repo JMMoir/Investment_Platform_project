@@ -40,14 +40,19 @@ export default {
 
   mounted(){
     const promises = this.portfolio.map((stock) => {
-    return fetch(`https://api.iextrading.com/1.0/stock/${stock.symbol}/batch?types=quote`)
+    // return fetch(`https://api.iextrading.com/1.0/stock/${stock.symbol}/batch?types=quote`)
+    return fetch(`http://cloud.iexapis.com/v1/stock/${stock.symbol}/quote?token=pk_71e1d70b73824881a0189570aa99669d`)
+
     .then(res => res.json())
   })
     Promise.all(promises)
     .then((data) => {
       const stocks = data;
+
       stocks.forEach((stock) => {
-      this.quotes.push(stock['quote'])
+
+      this.quotes.push(stock)
+
     })})
       .then(() => {
 
@@ -64,6 +69,7 @@ export default {
       })})
 
       .then(() => {
+        
       this.array.forEach(element => {
         const reducedObj = this.array.filter(pair => pair.sector === element.sector)
 
