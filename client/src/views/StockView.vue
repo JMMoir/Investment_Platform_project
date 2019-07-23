@@ -181,7 +181,6 @@ export default {
       this.stockInfo = details.quote;
       this.stockData = details.chart;
       this.stockNews = details.news;
-      console.log("Hello");
       this.getCloseValues();
       this.getLabels();
       this.getVolume();
