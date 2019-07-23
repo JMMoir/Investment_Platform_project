@@ -173,12 +173,15 @@ export default {
   mounted(){
     if(!this.stock) this.$router.push('/stocks');
 
-    if (this.selectedStock) fetch(`https://api.iextrading.com/1.0/stock/${this.selectedStock.symbol}/batch?types=quote,news,chart&range=1m&last=10`)
+    if (this.selectedStock)
+    // fetch(`https://api.iextrading.com/1.0/stock/${this.selectedStock.symbol}/batch?types=quote,news,chart&range=1m&last=10`)
+    fetchJsonp(`https://cloud-sse.iexapis.com/stable/stock/${this.selectedStock.symbol}/batch?types=quote,news,chart&range=1m&last=10&token=pk_71e1d70b73824881a0189570aa99669d`)
     .then(response => response.json())
     .then((details) => {
       this.stockInfo = details.quote;
       this.stockData = details.chart;
       this.stockNews = details.news;
+      console.log("Hello");
       this.getCloseValues();
       this.getLabels();
       this.getVolume();
