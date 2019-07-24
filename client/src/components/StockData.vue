@@ -15,7 +15,9 @@
         </div>
         <div class="inner-div">
           <p class="heading">Volume</p>
-          <p>{{stockInfo.latestVolume}}</p>
+          <p v-if="this.stockInfo.latestVolume > 0">{{stockInfo.latestVolume}}</p>
+          <p v-else>{{stockInfo.previousVolume}} (Previous)</p>
+
           <hr>
           <p class="heading">Market Cap</p>
           <p>{{stockInfo.marketCap}}</p>

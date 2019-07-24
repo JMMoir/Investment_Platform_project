@@ -201,6 +201,7 @@ export default {
       info.ytdChange = this.percentage(info.ytdChange);
 
       info.latestVolume = this.numberChange(info.latestVolume);
+      info.previousVolume = this.numberChange(info.previousVolume);
       info.avgTotalVolume = this.numberChange(info.avgTotalVolume);
 
 
