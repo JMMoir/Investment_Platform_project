@@ -2,7 +2,7 @@
 
   <div class="article">
     <a :href="article.url">
-      <p id="date">{{(article.datetime).replace("T", ", ")}} | {{article.source}}</p>
+      <p id="date">{{this.getDateTime(article.datetime)}} | {{article.source}}</p>
       <p id="headline">{{article.headline}}</p>
       <p id="summary">{{article.summary}}</p>
     </a>
@@ -22,6 +22,18 @@ export default {
   },
   props: ["article"],
   methods:{
+    getDateTime(timestamp){
+      const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+      const dateTime = new Date(timestamp);
+      const date = dateTime.getDate();
+      const month = months[dateTime.getMonth()];
+      const year = dateTime.getFullYear();
+      const hours = dateTime.getHours();
+      const minutes = dateTime.getMinutes();
+      const formattedDateTime = date + ' ' + month + ' ' + year + ' ' + hours + ':' + minutes;
+      return formattedDateTime
+    }
+
   }
 }
 </script>

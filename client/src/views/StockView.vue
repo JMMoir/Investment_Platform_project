@@ -203,6 +203,7 @@ export default {
       info.changePercent = this.percentage(info.changePercent);
       info.ytdChange = this.percentage(info.ytdChange);
 
+
       StockService.getStocks()
       .then(portfolio => this.portfolio = portfolio)
       .then(() => {
