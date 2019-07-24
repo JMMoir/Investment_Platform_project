@@ -197,11 +197,13 @@ export default {
       info.open = this.currency(info.open);
       info.previousClose = this.currency(info.previousClose);
 
+      info.changePercent = this.percentage(info.changePercent);
+      info.ytdChange = this.percentage(info.ytdChange);
+
       info.latestVolume = this.numberChange(info.latestVolume);
       info.avgTotalVolume = this.numberChange(info.avgTotalVolume);
 
-      info.changePercent = this.percentage(info.changePercent);
-      info.ytdChange = this.percentage(info.ytdChange);
+
 
 
       StockService.getStocks()
