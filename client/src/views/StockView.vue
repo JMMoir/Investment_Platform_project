@@ -114,7 +114,7 @@ export default {
     },
 
     numberChange(x){
-      return x.toLocaleString('en');
+      return parseInt(x).toLocaleString('en');
     },
 
     currency(x){
